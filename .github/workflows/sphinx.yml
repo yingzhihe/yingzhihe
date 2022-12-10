@@ -21,7 +21,7 @@ jobs:
 
     - name: Build HTML
       run: |
-        cd docs/
+        cd docs/source/
         sphinx-build -D language=en -b html ./ _build/html
 
 
