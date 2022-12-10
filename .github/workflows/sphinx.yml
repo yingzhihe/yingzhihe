@@ -29,4 +29,4 @@ jobs:
     - name: Deploy to GitHub pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-         folder: docs/documentation_files/source/_build/html
+         folder: docs/source/_build/html
