@@ -7,15 +7,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    
+    - name: Set up python
+      uses: actions/setup-python@main
+      with: 
+         python-version: '3.10'
+
+    - name: Install
+      shell: bash
+      run: |
+        pip install --upgrade pip
+        pip install -r docs/requirements.txt
+
     - name: Build HTML
-      uses: ammaraskar/sphinx-action@master
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: html-docs
-        path: doc/build/html/
-        
+      run: |
+        cd docs/
+        sphinx-build -D language=en -b html ./ _build/html
+
+
+
     - name: Deploy to GitHub pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-           folder: doc/build/html/
+         folder: docs/documentation_files/source/_build/html
